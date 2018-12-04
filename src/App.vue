@@ -8,10 +8,11 @@
 </template>
 
 <script>
-import TheNavbar from '@/components/TheNavbar';
+import TheNavBar from '@/components/TheNavbar';
+
 export default {
   components: {
-    TheNavbar
+    TheNavBar
   }
 };
 </script>
