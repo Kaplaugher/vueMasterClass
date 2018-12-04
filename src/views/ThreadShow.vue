@@ -4,21 +4,12 @@
 
       <h1>{{thread.title}}</h1>
       <p>
-        By <a
-          href="#"
-          class="link-unstyled"
-        >Robin</a>,
+        By <a href="#" class="link-unstyled">Robin</a>,
         <AppDate :timestamp="thread.publishedAt" />.
-        <span
-          style="float:right; margin-top: 2px;"
-          class="hide-mobile text-faded text-small"
-        >3 replies by 3 contributors</span>
+        <span style="float:right; margin-top: 2px;" class="hide-mobile text-faded text-small">3 replies by 3 contributors</span>
       </p>
       <PostList :posts="posts" />
-      <PostEditor
-        @save="addPost"
-        :threadId="id"
-      />
+      <PostEditor :threadId="id" />
 
     </div>
 
@@ -50,15 +41,6 @@ export default {
       return Object.values(this.$store.state.posts).filter(post =>
         postIds.includes(post['.key'])
       );
-    }
-  },
-  methods: {
-    addPost(eventData) {
-      const post = eventData.post;
-      const postId = eventData.post['.key'];
-      this.$set(this.$store.state.posts, postId, post);
-      this.$set(this.thread.posts, postId, postId);
-      this.$set(this.$store.state.users[post.userId].posts, postId, postId);
     }
   }
 };
