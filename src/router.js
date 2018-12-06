@@ -5,6 +5,7 @@ import ThreadShow from '@/views/ThreadShow.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
 import Forum from '@/views/PageForum.vue';
 import Category from '@/views/PageCategory';
+import Profile from '@/views/PageProfile';
 
 Vue.use(Router);
 
@@ -14,8 +15,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home
+    },
+    {
+      path: '/me',
+      name: 'Profile',
+      component: Profile,
+      props: true
     },
     {
       path: '/category/:id',
