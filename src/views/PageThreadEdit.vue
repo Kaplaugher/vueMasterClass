@@ -1,37 +1,42 @@
 <template>
   <div class="col-full push-top">
-    <h1>Create new thread in <i>{{forum.name}}</i></h1>
+
+    <h1>Editing <i>{{thread.title}}</i></h1>
+
     <ThreadEditor
+      :title="thread.title"
+      :text="text"
       @save="save"
       @cancel="cancel"
     />
-
   </div>
 </template>
- <script>
+
+<script>
 import ThreadEditor from '@/components/ThreadEditor';
 export default {
   components: {
     ThreadEditor
   },
   props: {
-    forumId: {
+    id: {
       type: String,
       required: true
     }
   },
-
   computed: {
-    forum() {
-      return this.$store.state.forums[this.forumId];
+    thread() {
+      return this.$store.state.threads[this.id];
+    },
+    text() {
+      return this.$store.state.posts[this.thread.firstPostId].text;
     }
   },
   methods: {
     save({ title, text }) {
-      // dispatch action
       this.$store
-        .dispatch('createThread', {
-          forumId: this.forum['.key'],
+        .dispatch('updateThread', {
+          id: this.id,
           title,
           text
         })
@@ -48,4 +53,6 @@ export default {
   }
 };
 </script>
- <style scoped>
+
+<style scoped>
+</style>
